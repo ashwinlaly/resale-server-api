@@ -8,6 +8,9 @@ var express = require('express'),
 
 // Import all routes
 loginRoute = require('./route/login')();
+SignupRoute = require('./route/signin')();
+profileRoute = require('./route/profile')();
+fileRoute = require('./route/upload');
 
 // Create a Socket variable to reuse later Socket is inlined here
 let _socket;
@@ -34,8 +37,10 @@ app.use(function (req,res,next){
 
 // make the routes available to the serve
 app.use(loginRoute);
-
-    // if incorrect access is found
+app.use(SignupRoute);
+app.use(profileRoute);
+app.use(fileRoute);
+// if incorrect access is found
 app.all('*',function(req,res){
     console.log("~ Action -> " + req.connection.remoteAddress +"  " + req.method + " : " + req.url);
     res.status(404).json({
@@ -64,8 +69,8 @@ db.connection(er => {
         // Create a stream that watchs for changes
         var userStream = db.get().collection('users').watch();
         userStream.on('change', (next) => {
-            _socket.emit('send',{'data' : 'users document changes'});
-            console.log('An Update');
+            _socket.emit('send',{'data' : next});
+            console.log(next);
         });
 
         // creating a server 

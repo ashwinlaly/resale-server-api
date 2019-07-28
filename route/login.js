@@ -9,12 +9,13 @@ var express = require('express'),
 
 var route = () => {
     // post data to login into the site
-    loginRoute.route('/login')
+    loginRoute.route('/signin')
         .post((req,res) => {
             var Qwhere = {
                 email : req.body.email,
                 password : req.body.password
             };
+            // console.log('Qwhere', Qwhere);
             var where = [
                 {'$match' : Qwhere},
                 {'$project' : {'_id' : 1, 'email' : 1 }}
@@ -24,7 +25,7 @@ var route = () => {
                 if(data.length == 1){
                     var payload = generateToken.generate(data[0]);
                     // console.log("key", config.jwt.key);
-                    jwt.sign(payload,config.jwt.key, { expiresIn : '10' }, (err, token) => {
+                    jwt.sign(payload,config.jwt.key, { expiresIn : '24h' }, (err, token) => {
                         if(err){
                             res.status(404).json(status.loginFailed);
                         } else {
@@ -51,7 +52,7 @@ var route = () => {
             // console.warn(req.headers['token']);
             jwt.verify(req.headers['token'], config.jwt.key, (err, result) => {
                 if(err){
-                    res.send({err});
+                    res.send({...err, status : 400});
                 } else {
                     res.send({result});
                 }
@@ -68,7 +69,6 @@ var route = () => {
             //     res.status(200).json(loginSucess);
             // });
         });
-
 
     return loginRoute;
 };
