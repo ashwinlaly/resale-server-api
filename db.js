@@ -1,4 +1,4 @@
-var mongo = require('mongodb').MongoClient,
+var mongodb = require('mongodb').MongoClient,
     config = require('./config');
 
 // create a common variable to reuse in other files
@@ -8,10 +8,10 @@ let _db;
 module.exports = {
     connection : callback => {
         // Connect to Mongo server -> DB resales
-        mongo.connect(`${config.db.url}`, { useNewUrlParser : true }, (err, con) => {
+        mongodb.connect(`${config.db.url}`, { useNewUrlParser : true }, (err, con) => {
             if(err){
                 // if any error occurs
-                console.log("DB Connection failed");
+                console.log("DB Connection failed",err);
             } else {
                 // if connection is done
                 _db = con.db('resales');

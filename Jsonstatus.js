@@ -33,6 +33,26 @@ var accountDeleted = {
     status : 200
 };
 
+var InvalidAccess = {
+    message : 'Invalid URL Access',
+    status : 400
+}
+
+var itemDeletionFailed = {
+    message : 'Unable to delete this item',
+    status : 400
+}
+
+var itemDeletionSucess = {
+    message : 'Item deleted sucessfully',
+    status : 200
+}
+
+var itemNotFound = {
+    message : 'Item Not Found',
+    status : 200
+}
+
 module.exports = {
     loginSucess,
     loginFailed,
@@ -40,5 +60,9 @@ module.exports = {
     accountCreated,
     userData,
     noAccountFound,
-    accountDeleted
+    accountDeleted,
+    InvalidAccess,
+    itemDeletionFailed,
+    itemDeletionSucess,
+    itemNotFound
 };

@@ -11,6 +11,7 @@ loginRoute = require('./route/login')();
 SignupRoute = require('./route/signin')();
 profileRoute = require('./route/profile')();
 fileRoute = require('./route/upload');
+productRoute = require('./route/products')();
 
 // Create a Socket variable to reuse later Socket is inlined here
 let _socket;
@@ -40,6 +41,8 @@ app.use(loginRoute);
 app.use(SignupRoute);
 app.use(profileRoute);
 app.use(fileRoute);
+app.use(productRoute);
+
 // if incorrect access is found
 app.all('*',function(req,res){
     console.log("~ Action -> " + req.connection.remoteAddress +"  " + req.method + " : " + req.url);

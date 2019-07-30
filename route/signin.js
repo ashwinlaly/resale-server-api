@@ -20,7 +20,10 @@ var route = () => {
                         name : req.body.name,
                         email : req.body.email,
                         password : req.body.password,
-                        mobile : req.body.mobile
+                        mobile : req.body.mobile,
+                        status : true,
+                        created_at : new Date(),
+                        modified_at : new Date()
                     }
                     db.get().collection('users').insertOne(Idata).then((data) => {
                         res.status(200).json(status.accountCreated);
