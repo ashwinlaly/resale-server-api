@@ -1,4 +1,4 @@
-#Resale Application helps to sale all the products which a person likes to sale
+#Resale Application helps to sale all the products
 
 ##implementation tools
 ```
@@ -18,7 +18,7 @@ Now run the mongoDB serve in mycase with the following
     > mongod --port 27103 --dbpath=E:/My_projects/mongo --replSet "rs"
     > mongo "mongodb://localhost:27103"
     > rs.initiate [optional - not need when the replica set is already initiated]
-Now run the API server the command
+Now run the API server with the command
     > node app.js
     > Now the server will be running at the port http://localhost:1212
 ```
