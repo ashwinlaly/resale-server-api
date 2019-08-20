@@ -11,12 +11,12 @@ var express = require('express'),
 
 var route = () => {
 
-    profileRoute.route('/profile')
+    profileRoute.route('/api/profile')
         .get((req,res) => {
             var token = req.headers['token'];
             jwt.verify(token, config.jwt.key, (err,decode) => {
                 if(err){
-                    res.status(400).json({...err,status : 400});
+                    res.status(200).json({...err,status : 400});
                 } else {
                     var id = new mongo.ObjectID(decode._id);
                     // res.send(decode);
@@ -35,7 +35,7 @@ var route = () => {
         //     var token = req.headers['token'];
         //     jwt.verify(token, config.jwt.key, (err,decode) => {
         //         if(err){
-        //             res.status(400).json({...err,status : 400});
+        //             res.status(200).json({...err,status : 400});
         //         } else {
         //             res.send(status.userData);
         //         }
@@ -45,7 +45,7 @@ var route = () => {
             var token = req.headers['token'];
             jwt.verify(token, config.jwt.key, (err,decode) => {
                 if(err){
-                    res.status(400).json({...err,status : 400});
+                    res.status(200).json({...err,status : 400});
                 } else {
                     var id = new mongo.ObjectID(decode._id);
                     db.get().collection('users').find({_id : id}).toArray().then(data => {
@@ -64,7 +64,7 @@ var route = () => {
             var token = req.headers['token'];
             jwt.verify(token, config.jwt.key, (err,decode) => {
                 if(err){
-                    res.status(400).json({...err,status : 400});
+                    res.status(200).json({...err,status : 400});
                 } else {
                     
                     res.send(status.userData);

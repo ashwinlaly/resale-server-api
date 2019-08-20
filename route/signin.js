@@ -5,7 +5,7 @@ var express = require('express'),
 
 var route = () => {
 
-    signupRoute.route('/signup')
+    signupRoute.route('/api/signup')
         .post((req,res) => {
             // Check User exists
             var QExists = {

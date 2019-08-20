@@ -9,7 +9,7 @@ var express = require('express'),
 
 var route = () => {
     // post data to login into the site
-    loginRoute.route('/signin')
+    loginRoute.route('/api/signin')
         .post((req,res) => {
             var Qwhere = {
                 email : req.body.email,
@@ -38,13 +38,13 @@ var route = () => {
                     });
                     // res.status(200).json(payload);
                 } else {
-                    res.status(404).json(status.loginFailed);
+                    res.status(250).json(status.loginFailed);
                 }
             });
         });
 
 
-    loginRoute.route('/test')
+    loginRoute.route('/api/test')
         .get((req,res) => {
             var Qwhere = {
                 email : 'ashwinlaly@gmail.com'

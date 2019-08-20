@@ -58,7 +58,7 @@ io.on('connection',(socket)=>{
     // Socket Functions are available here
     _socket.on('test',(data)=>{
         console.log("test socket receive",data);
-        _socket.emit('send',{'data' : data});
+        _socket.emit('received',{'data' : data});
     });
     console.log('New connection ', _socket.id);
 });

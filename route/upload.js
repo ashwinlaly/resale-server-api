@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage : storage});
 
-fileRoute.post("/userimage", upload.single('image') ,(req,res) => {
+fileRoute.post("/api/userimage", upload.single('image') ,(req,res) => {
     var token = req.headers['token'];
     jwt.verify(token, config.jwt.key, (err, decode) => {
         var id = new mongo.ObjectID(decode._id);
